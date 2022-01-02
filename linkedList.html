@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+class Node{
+    constructor(data, next=null, prev){
+        this.data=data; 
+        this.next= next;
+        this.prev= prev;
+    }
+
+}
+class LinkedList{
+    constructor(){
+        this.head=null; 
+        this.tail=null;
+        this.size=0;
+    }
+
+    //Insert a node at the baginning of the list
+    insertFirst(data){
+        
+        const newNode= new Node(data, this.head); //If i allready have something in the "head" i want tu push it to the next
+        this.head= newNode; 
+        this.size++;
+    }
+
+     //insert a node at the end of the list
+     insertEnd(data){
+        const newNode= new Node(data);
+        if(!this.head){ //the list is empty
+            insertFirst(data);
+        }
+        else{
+            const current= this.getByIndex(this.size-1);
+            current.next= newNode;
+            newNode.prev=current;
+        }
+        this.tail=newNode
+        this.size++;
+    }
+
+    getByIndex(index){
+        if(index<0 || index>= this.size){
+            return null;
+        }
+        let current = this.head;
+        for( let i=0 ; i<index; i++){
+            current= current.next;
+        }
+        return current;
+    }
+
+    printList(){
+        let current=this.head;
+        while(current){
+            console.log(current.data);
+            current=current.next;
+        }
+    }
+
+}
+const l= new LinkedList();
+l.insertFirst(100);
+l.insertFirst(200);
+l.insertFirst(300);
+l.insertEnd(400);
+
+//console.log(l);
+l.printList();
+
+
+
+</script>
+
+
+
+
+
+
+
+</html>
